@@ -11,3 +11,6 @@ public class IfitnessApplication {
 	}
 
 }
+
+
+//api -> application programming interface 

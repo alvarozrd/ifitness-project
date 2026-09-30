@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.ifspcjo.ads.web2.ifitness.domain.model.Gender;
 import br.edu.ifspcjo.ads.web2.ifitness.domain.model.User;
 
-@RestController 
+@RestController //serverlet -> aplicação servidora
 public class UserResource {
 
-    @GetMapping("/Users")
+    @GetMapping("/users") // ->
     public List<User> list(){
         var user1 = new User();
                 user1.setId(1L);
