@@ -37,3 +37,13 @@ public class UserResource {
 
             }
 }
+
+// O Hibernate ORM é um framework para o mapeamento objeto-relacional escrito na linguagem Java. 
+// Também está disponível em .NET com nome de NHibernate
+// É um software livre da RedHat
+
+// A ideia do Hibernate é facilitar a interação em o código e as tabelas do DataBase
+// Foco nas regras de negócio, não na estrutura
+
+// a notação @Table serve para indicar a tabela correta
+// A recomendação do próprio Hibernate é que para produção será interessante gerenciar o schema com scripts de migração icrementais 
