@@ -1,7 +1,6 @@
 package br.edu.ifspcjo.ads.web2.ifitness.domain.model;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

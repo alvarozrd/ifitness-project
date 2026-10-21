@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifspcjo.ads.web2.ifitness.domain.model.User;
 import br.edu.ifspcjo.ads.web2.ifitness.repository.UserRepository;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController //serverlet -> aplicação servidora
