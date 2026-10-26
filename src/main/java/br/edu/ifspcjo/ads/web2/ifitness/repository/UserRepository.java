@@ -6,4 +6,6 @@ import br.edu.ifspcjo.ads.web2.ifitness.domain.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    boolean existsByEmail(String email);
+
 }
