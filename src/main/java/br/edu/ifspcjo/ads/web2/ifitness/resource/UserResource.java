@@ -17,37 +17,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifspcjo.ads.web2.ifitness.domain.model.User;
 import br.edu.ifspcjo.ads.web2.ifitness.repository.UserRepository;
+import br.edu.ifspcjo.ads.web2.ifitness.service.UserService;
 import jakarta.validation.Valid;
 
 @RestController //serverlet -> aplicação servidora
 @RequestMapping("api/users")
 public class UserResource {
 
-    @Autowired  // Injeção de Dependência
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @GetMapping // ->
-    public List<User> list(){
-      return userRepository.findAll();
-    }
+	@Autowired
+	private UserService userService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User create(@Valid @RequestBody User user) {
-      return userRepository.save(user);
-    }
+	@GetMapping
+	public List<User> list(){
+		return userRepository.findAll();
+	}
 
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public User create(@Valid @RequestBody User user) {
+		return userService.save(user);
+	}
 
-    	@GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id){
-		Optional<User> user = userRepository.findById(id);
-		if(user.isPresent()) {
-			return ResponseEntity.ok(user.get());
-		}
-		return ResponseEntity.notFound().build();
+		User user = userService.findUserById(id);
+		return ResponseEntity.ok(user);
 	}
 
 }
+
 
 // O Hibernate ORM é um framework para o mapeamento objeto-relacional escrito na linguagem Java. 
 // Também está disponível em .NET com nome de NHibernate
