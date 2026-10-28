@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifspcjo.ads.web2.ifitness.domain.model.User;
 import br.edu.ifspcjo.ads.web2.ifitness.repository.UserRepository;
+import br.edu.ifspcjo.ads.web2.ifitness.service.exception.EmailAlreadyRegisteredException;
 
 
 @Service
@@ -15,6 +16,9 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public User save(User user) {
+		if (userRepository.existsByEmail(user.getEmail())) {
+			throw new EmailAlreadyRegisteredException();
+		}
 		return userRepository.save(user);
 	}
 
