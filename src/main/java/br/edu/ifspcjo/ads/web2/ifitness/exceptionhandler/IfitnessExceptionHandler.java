@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.edu.ifspcjo.ads.web2.ifitness.service.exception.EmailAlreadyRegisteredException;
+
 @ControllerAdvice
 public class IfitnessExceptionHandler extends ResponseEntityExceptionHandler{
 
@@ -50,6 +52,16 @@ public class IfitnessExceptionHandler extends ResponseEntityExceptionHandler{
 		String developerMessage = ex.toString();
 		List<ErrorMessage> errors = Arrays.asList(new ErrorMessage(userMessage, developerMessage));
 		return handleExceptionInternal(ex, errors, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	}
+
+	@ExceptionHandler({ EmailAlreadyRegisteredException.class })
+	public ResponseEntity<Object> handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException ex,
+			WebRequest request) {
+		String userMessage = messageSource.getMessage("user.email-already-registered", null,
+				LocaleContextHolder.getLocale());
+		String developerMessage = ex.toString();
+		List<ErrorMessage> errors = Arrays.asList(new ErrorMessage(userMessage, developerMessage));
+		return handleExceptionInternal(ex, errors, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	private List<ErrorMessage> createErrorList(BindingResult bindingResult) {
